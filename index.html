@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .grid-container {
+        display: grid;
+        grid-template-rows: repeat( 3, 1fr );
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 8px;
+      }
+
+      .test {
+        grid-row: 2;
+        grid-column: 2;
+        
+        padding: 8px;
+
+        border: 1px solid black;
+
+        transform: none;
+
+        transition: transform 1s;
+      }
+
+      .content {
+        grid-row: 2;
+        grid-column: 2;
+
+        padding: 8px;
+
+        border: 1px solid black;
+      }
+    </style>
+    <script>
+      addEventListener( "DOMContentLoaded", () => {
+        const items = [...document.getElementsByClassName('test')]
+
+        for( let i = 0; i < items.length; i++ ) {
+          const item = items[i]
+
+          setTimeout( () => {
+            const vertical = (item.getAttribute( "data-row" ) - 2 ) * 100
+            const horizontal = (item.getAttribute( "data-column" ) - 2) * 100
+            item.style.transform = `translate( ${horizontal}%, ${vertical}% )`
+          }, i * 1000 )
+          
+        }
+      } )
+    </script>
+    <title>Ejemplo animación grid</title>
+  </head>
+  <body>
+    <div class="grid-container">
+      <div class="test" data-row="1" data-column="1">Hola 1</div>
+      <div class="test" data-row="1" data-column="3">Hola 2</div>
+      <div class="test" data-row="2" data-column="1">Hola 3</div>
+      <div class="test" data-row="2" data-column="3">Hola 4</div>
+      <div class="test" data-row="3" data-column="1">Hola 5</div>
+      <div class="test" data-row="3" data-column="3">Hola 6</div>
+      <div class="content">Content</div>
+    </div>
+  </body>
+</html>
